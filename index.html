@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>测试跳转到 NewHomeActivity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          padding: 24px;
+        }
+        button {
+          padding: 12px 20px;
+          font-size: 16px;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h2>测试跳转到 App 首页</h2>
+
+<!-- 纯 a 标签方式 -->
+<p>
+    <a id="schemeLink" href="#">
+        <button>通过自定义 Scheme 打开 App</button>
+    </a>
+</p>
+
+<!-- 也可以用 JS 方式 -->
+<p>
+    <button onclick="openAppByJs()">JS 调用打开 App（location.href）</button>
+</p>
+
+<script>
+    // 把这里的 scheme 改成你 manifestPlaceholders 中实际的值
+    // 例如：const SCHEME = 'mingdaoPush';
+    const SCHEME = 'https'; // TODO: 替换成真实值
+
+    // 和 manifest 对应的完整 URL：
+    const DEEP_LINK = SCHEME + '://com.mingdao.push/home_page';
+
+    // 设置到 a 标签上，方便直接点
+    document.getElementById('schemeLink').href = DEEP_LINK;
+
+    // JS 打开方式
+    function openAppByJs() {
+      window.location.href = DEEP_LINK;
+    }
+</script>
+</body>
+</html>
